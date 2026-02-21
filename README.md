@@ -5,7 +5,7 @@ AI-Based Smart auto focus & Dynamic subject Tracking System
 ## Team Name : INNOVISION 
 
 ## Members
-Vivekananda Sahoo 
+Vivekananda Sahoo , 
 Aman Jayswal 
 
 # 🧠 Multi-Sport Object Tracking Model — Dataset & Training Guide
