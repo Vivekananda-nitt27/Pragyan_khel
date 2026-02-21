@@ -175,6 +175,89 @@ yolo detect train model=yolov8n.pt data=data.yaml imgsz=640 epochs=100 batch=16
 
 ---
 
+## 🧠 Face Identity Tracking (YOLO + DeepFace)
+
+### 📌 Overview
+
+This module performs **face detection, ID assignment, and continuous tracking** across video frames.
+
+It combines:
+
+* **YOLO Face Detection** → detect faces per frame
+* **DeepFace (ArcFace)** → generate 512-D face embeddings
+* **Multi-embedding per ID** → stabilize identity across pose, lighting, and expression
+* **Temporal tracking** → prevent ID switching between frames
+
+---
+
+### ⚙️ Pipeline
+
+```
+Frame → Face Detection → Embedding → ID Match → Temporal Lock → ID Update
+```
+
+---
+
+### 🧬 Multi-Embedding Strategy
+
+Each identity stores multiple embeddings instead of one.
+
+This improves:
+
+* Pose robustness
+* Expression robustness
+* Reduced ID switching
+* Long-term stability
+
+Old embeddings are replaced using a fixed buffer size.
+
+---
+
+### 🗂️ Face Database
+
+Embeddings are stored in:
+
+```
+facedata.json
+```
+
+Structure:
+
+```
+ID → list of embeddings
+```
+
+This enables persistence and continuous learning across sessions.
+
+---
+
+### 🔒 Identity Stabilization
+
+To avoid ID changes:
+
+* Cosine similarity matching is used
+* New embeddings are added only when similarity is strong
+* Spatial continuity keeps ID stable even if similarity fluctuates
+
+This creates **continuous face tracking (Re-ID)**.
+
+---
+
+### 🎯 Optional Focus Mode
+
+User can click a face to:
+
+* Lock selected ID
+* Blur background
+* Keep selected face clear
+
+Useful for smart camera focus systems.
+
+---
+
+**This module implements stable face re-identification using DeepFace embeddings, multi-embedding identity buffers, and temporal tracking for continuous ID tracking.**
+
+
 ## 🧠 Important Dataset Guidelines
 
 ✔ Diversity is more important than quantity
@@ -255,6 +338,7 @@ After training, this model enables:
 
 * Multi-sport object detection
 * Player-equipment linking
+* player detection with their face tracking 
 * Event detection
 * Tracking pipelines
 * Auto camera focus systems
