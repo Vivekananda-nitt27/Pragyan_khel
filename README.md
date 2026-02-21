@@ -1,10 +1,10 @@
 
-##Problem Statement : 
+## Problem Statement : 
 AI-Based Smart auto focus & Dynamic subject Tracking System 
 
-##Team Name : INNOVISION 
+## Team Name : INNOVISION 
 
-##Members
+## Members
 Vivekananda Sahoo 
 Aman Jayswal 
 
