@@ -1,0 +1,19 @@
+path: D:/Pragyan_khel
+
+train: images/train
+val: images/train
+
+names:
+  0: ball
+  1: racket
+  2: bat
+  3: stick
+  4: helmet
+  5: gloves
+  6: shoes
+  7: pads
+  8: stumps
+  9: bails
+  10: net
+  11: shuttlecock
+  12: basket

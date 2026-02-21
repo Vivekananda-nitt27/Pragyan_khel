@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Pragyan Khel Tracking</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="app">
+
+<header class="topbar">
+<h2>🎯 Pragyan Khel — Smart Tracking</h2>
+</header>
+
+<div class="layout">
+
+<div class="video-section">
+
+<div class="upload-bar">
+<form method="POST" enctype="multipart/form-data">
+<label class="upload-btn">
+Upload Video
+<input type="file" name="video" hidden>
+</label>
+<button class="primary-btn" type="submit">Start</button>
+</form>
+</div>
+
+<div class="video-wrapper">
+<img id="video" src="/video_feed">
+<div class="hint">Click an object to track</div>
+</div>
+
+</div>
+
+<div class="side-panel">
+<h3>Controls</h3>
+
+<div class="card">
+<p>Select an object to focus.</p>
+<p>Background blur activates automatically.</p>
+</div>
+
+
+
+</div>
+
+</div>
+</div>
+
+<script>
+const video = document.getElementById("video");
+
+video.addEventListener("click", function(e){
+    const rect = video.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    fetch("/click",{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({x:x,y:y})
+    });
+});
+</script>
+
+</body>
+</html>
